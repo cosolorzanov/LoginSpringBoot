@@ -1,0 +1,37 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="en">
+<head th:replace="fragments::header">
+    <title>Login</title>
+    <link th:href="@{/logincss/logincss.css}" href="../static/logincss/logincss.css" rel="stylesheet">
+
+</head>
+<body style="align-items: baseline">
+
+<div class="container" >
+
+    <nav th:replace="fragments::navbar"> </nav>
+
+    <form class="form-signin" th:action="@{/login}" method="post">
+        <!--<img class="mb-4" th:src="@{/img/avatar.png}" alt="" width="72" height="72" >-->
+        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+        <div th:if="${errorMessge}" style="color: red">
+            <span th:text="${errorMessge} "></span>
+        </div>
+        <label for="Username" class="sr-only">Username</label>
+        <input  name="username" id="Username" class="form-control" placeholder="Email address" required >
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" value="remember-me"> Remember me
+            </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-blo1ck" type="submit">Sign in</button>
+        <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
+    </form>
+
+</div>
+</body>
+</html>

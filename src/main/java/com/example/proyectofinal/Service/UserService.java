@@ -2,44 +2,30 @@ package com.example.proyectofinal.Service;
 
 import com.example.proyectofinal.Entity.UserEntity;
 import com.example.proyectofinal.Repository.UserRepository;
+import com.example.proyectofinal.config.WebSecurityConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import java.util.List;
+
+
 
 @Component
 public class UserService {
     @Autowired
-   private UserRepository userRepository;
+    private UserRepository userRepository;
+    @Autowired
+    private WebSecurityConfig webSecurityConfig;
 
-    public List<UserEntity> finAll() {
-        List<UserEntity> list;
-        list = (List<UserEntity>) userRepository.findAll();
-        return list;
-    }
-
-    public UserEntity findById(long id) {
-        for (UserEntity user:finAll() ) {
-            if (user.getId()==id)
-                return user;
-        }
-        return null;
-    }
-
-    public UserEntity findByUsername(String Username) {
-        for (UserEntity user:finAll() ) {
-            if (user.getUsername().equals(Username))
-                return user;
-        }
-        return null;
-    }
-
-    public String save(UserEntity userEntity){
+    public void save(UserEntity userEntity){
+        String passCrytp=webSecurityConfig.passwordEncoder().encode(userEntity.getPassword());
+        userEntity.setPassword(passCrytp);
         userRepository.save(userEntity);
-        return "El usuario "+userEntity.getUsername()+" se ha creado con exito";
     }
+
     public String update(UserEntity userEntity){
         userRepository.save(userEntity);
         return "El usuario "+userEntity.getUsername()+" se ha actualizado con exito";
     }
+
 }

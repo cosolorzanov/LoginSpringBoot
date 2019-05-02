@@ -4,6 +4,9 @@
     <persistence-unit name="NewPersistenceUnit">
         <class>com.example.proyectofinal.Entity.RolEntity</class>
         <class>com.example.proyectofinal.Entity.UserEntity</class>
+        <class>com.example.proyectofinal.Entity.UserEntity</class>
+        <class>com.example.proyectofinal.Entity.RolEntity</class>
+        <class>com.example.proyectofinal.Entity.UserEntity</class>
         <properties>
             <property name="toplink.jdbc.url" value="jdbc:mysql://localhost:3306/mydb"/>
             <property name="toplink.jdbc.driver" value="com.mysql.jdbc.Driver"/>

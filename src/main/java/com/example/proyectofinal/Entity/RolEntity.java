@@ -33,9 +33,9 @@ public class RolEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        RolEntity rolEntity = (RolEntity) o;
-        return id == rolEntity.id &&
-                Objects.equals(name, rolEntity.name);
+        RolEntity that = (RolEntity) o;
+        return id == that.id &&
+                Objects.equals(name, that.name);
     }
 
     @Override

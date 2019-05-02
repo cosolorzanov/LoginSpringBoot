@@ -1,0 +1,62 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="fragments::header">
+    <title>Register</title>
+</head>
+<body>
+    <!--include navbar-->
+    <div class="container" style="justify-content: center">
+        <nav th:replace="fragments::navbar"></nav>
+
+        <h1 class="h1">Crear Usuario</h1>
+
+        <form class="needs-validation" th:action="@{/register}" method="POST"  th:object="${user}" novalidate >
+            <div class="form-row">
+                <div class="col-md-6 mb-2">
+                    <label >Name*</label>
+                    <input th:field="*{name}"  type="text" class="form-control" placeholder="Name"  required>
+                        <div th:if="${#fields.hasErrors('name')}" style="color: red">
+                             <span th:errors="*{name}"></span>
+                        </div>
+                </div>
+                <div class="col-md-4 mb-2">
+                    <label >Username</label>
+                    <input th:field="*{username}"  type="text" class="form-control"  placeholder="username"  required>
+                    <div th:if="${#fields.hasErrors('username')}" style="color: red">
+                        <span th:errors="*{username}"></span>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-2">
+                    <label >Email</label>
+                    <input th:field="*{email}" type="email" class="form-control"  placeholder="email@email.com"  required>
+                    <div th:if="${#fields.hasErrors('email')}" style="color: red">
+                        <span th:errors="*{email}"></span>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-2">
+                    <label >Phone</label>
+                    <input th:field="*{phone}" type="number" class="form-control"  placeholder="1234567"  required>
+                    <div th:if="${#fields.hasErrors('phone')}" style="color: red">
+                        <span th:errors="*{phone}"></span>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-2">
+                    <label >Password</label>
+                    <input id= "password" th:onkeyup="checkPass()"  th:field="*{password}" type="password" class="form-control"  placeholder="**********"  required>
+                    <div th:if="${#fields.hasErrors('password')}" style="color: red">
+                        <span th:errors="*{password}"></span>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-2">
+                    <label >confirm Password</label>
+                    <input id="confirmPassword" th:onkeyup="checkPass()"  type="password" class="form-control"  placeholder="**********"  required>
+                    <div  style="color: red" id="errorConfirmPassword"> </div>
+                </div>
+                <button id="submit" class="btn btn-primary" type="submit">Crear</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
